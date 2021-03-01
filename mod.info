@@ -1,0 +1,10 @@
+name=BzHotbarMod
+poster=poster.png
+id=BzoukHotBarMod
+description=Mod add hot bar slot for items to use.
+require=bcUtils
+modversion=0.0.1
+pzversion=41.50-IWBUMS
+versionMin=41.49
+versionurl=
+url=
