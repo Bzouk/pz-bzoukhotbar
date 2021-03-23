@@ -1,0 +1,8 @@
+IGUI_EN = {
+    IGUI_Bz_Fast_HotBar_MaxTables_Name = "Max tables",
+    IGUI_Bz_Fast_HotBar_MaxTables_Tooltip = "Tables activated. 1 to 5.",
+    IGUI_Bz_Fast_HotBar_DropdownX_Name = "Rows for table ",
+    IGUI_Bz_Fast_HotBar_DropdownX_Tooltip = "Number of rows in table. 1 to 10.",
+    IGUI_Bz_Fast_HotBar_DropdownY_Name = "Columns for table ",
+    IGUI_Bz_Fast_HotBar_DropdownY_Tooltip = "Number of columns in table. 1 to 10.",
+}
