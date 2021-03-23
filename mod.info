@@ -5,3 +5,4 @@ id=pz-bzoukhotbar
 url=https://github.com/Bzouk/pz-bzoukhotbar
 modversion=0.0.1
 pzversion=41.50-IWBUMS
+require=bcUtils
