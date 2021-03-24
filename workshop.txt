@@ -1,7 +1,6 @@
 version=1
-id=
-title=Mod Template
+id=2434425002
+title=BzoukHotbarMod
 description=This mod add hot bars for items to quick use.
-description=
 tags=
-visibility=public
+visibility=private
