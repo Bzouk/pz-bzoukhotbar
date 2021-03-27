@@ -37,9 +37,6 @@ ISBzHotBar.config.windows[5].rows = 1;
 ISBzHotBar.config.windows[5].columns = 1;
 ISBzHotBar.config.main = {};
 ISBzHotBar.config.main.activeWindows = 1;
-ISBzHotBar.config.main.slotHeight = 60;
-ISBzHotBar.config.main.slotWidth = 60;
-ISBzHotBar.config.main.windowSpace = 10;
 ISBzHotBar.config.main.show = false;
 
 local ConfigFileName = "bzhotbar.ini"
@@ -205,9 +202,6 @@ ISBzHotBar.loadConfig = function() -- {{{
     local ini = bcUtils.readINI(ConfigFileName);
     if not bcUtils.tableIsEmpty(ini) then
         if not ini.main then ini.main = {} end
-        ISBzHotBar.config.main.slotHeight = tonumber(ini.main.slotHeight) or 60;
-        ISBzHotBar.config.main.slotWidth = tonumber(ini.main.slotWidth) or 60;
-        ISBzHotBar.config.main.windowSpace = tonumber(ini.main.windowSpace) or 10;
 
         for i=1,ISBzHotBar.config.main.activeWindows do
             if not ini.items then ini.items = {} end
@@ -243,12 +237,20 @@ end
 
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
+ISBzHotBar.getHotBarSlotDimension = function()
+    return math.max(60, getTextManager():MeasureStringX(UIFont.Small, getText("UI_Bz_Fast_HotBar_Slot_Remove")) + 10)
+end
+
 ISBzHotBar.getHotBarWidth = function(columns)
-    return  ISBzHotBar.config.main.slotWidth * columns
+    return  ISBzHotBar.getHotBarSlotDimension() * columns + 3
+end
+
+ISBzHotBar.getHotBarWindowTitleBarHeight = function()
+    return math.max(16, getTextManager():getFontHeight(UIFont.Small) + 1)
 end
 
 ISBzHotBar.getHotBarHeight = function(rows)
-    return ISBzHotBar.config.main.windowSpace + 3 + ISBzHotBar.config.main.slotHeight * rows
+    return ISBzHotBar.getHotBarWindowTitleBarHeight() + 3 + ISBzHotBar.getHotBarSlotDimension() * rows
 end
 
 ISBzHotBar.Toggle = function()
@@ -267,7 +269,7 @@ ISBzHotBar.Toggle = function()
             local x = ISBzHotBar.config.windows[windowNum].x or (getCore():getScreenWidth() / 2 - 240);
             local y = ISBzHotBar.config.windows[windowNum].y or (getCore():getScreenHeight() - ISBzHotBar.getHotBarHeight(ISBzHotBar.config.windows[windowNum].columns) - 240);
 
-            ISBzHotBar.bzHotBar[windowNum] = ISBzHotBarWindow:new(x, y, ISBzHotBar.getHotBarWidth(ISBzHotBar.config.windows[windowNum].columns), ISBzHotBar.getHotBarHeight(ISBzHotBar.config.windows[windowNum].rows), ISBzHotBar.config.main.slotHeight, windowNum,ISBzHotBar.config.windows[windowNum].rows, ISBzHotBar.config.windows[windowNum].columns);
+            ISBzHotBar.bzHotBar[windowNum] = ISBzHotBarWindow:new(x, y, ISBzHotBar.getHotBarWidth(ISBzHotBar.config.windows[windowNum].columns), ISBzHotBar.getHotBarHeight(ISBzHotBar.config.windows[windowNum].rows), ISBzHotBar.getHotBarSlotDimension(), windowNum,ISBzHotBar.config.windows[windowNum].rows, ISBzHotBar.config.windows[windowNum].columns);
             ISBzHotBar.bzHotBar[windowNum]:setVisible(ISBzHotBar.config.main.show);
             ISBzHotBar.bzHotBar[windowNum]:addToUIManager();
         else

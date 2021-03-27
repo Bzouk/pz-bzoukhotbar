@@ -39,7 +39,7 @@ function ISBzHotSlot:new (x, y, width, height, parent, object, slot, windowNum)
     o.object = object;
     o.parent = parent;
     o.slot = slot;
-    o.sizeOfRemoveButton = 10
+    o.sizeOfRemoveButton = math.max(10, getTextManager():MeasureStringY(UIFont.Small, getText("UI_Bz_Fast_HotBar_Slot_Remove")))
     o.windowNum = windowNum
 
     return o
@@ -57,9 +57,8 @@ function ISBzHotSlot:render()
         self.removeButton:setVisible(false);
         return ;
     end
-    if not self.removeButton:getIsVisible() then
-        self.removeButton:setVisible(true);
-    end
+
+    self.removeButton:setVisible(true);
 
     local imgSize = math.min(self.width, self.height - self.sizeOfRemoveButton);
     local alpha = 0.3;
@@ -70,7 +69,11 @@ function ISBzHotSlot:render()
 
     if self.object.texture ~= nil then
         self:drawTextureScaled(self.object.texture, (self.width - imgSize) / 2, 0, imgSize, imgSize, alpha, 1, 1, 1);
+    else
+        self.removeButton:setVisible(false);
+        return ;
     end
+
     local text = "(" .. self.object.count .. ")";
     -- ( text, x,double y,double r,double g, double b,double alpha)
     self:drawText(text, self.width - getTextManager():MeasureStringX(UIFont.Small, text), self.removeButton.y - (getTextManager():MeasureStringY(UIFont.Small, text) + 1), 1, 1, 1, 1, UIFont.Small);
@@ -168,10 +171,10 @@ function ISBzHotSlot:ActivateSlot()
     -- same like ISInventoryPane:doContextualDblClick(item)
     if instanceof(item, "Food") then -- food smoke (also food)
         if item:isPoison() == false then -- if not posion,
-            if playerObj:getMoodles():getMoodleLevel(MoodleType.FoodEaten) >= 3 and playerObj:getNutrition():getCalories() >= 1000 then
-                return
-            end
             if item:getHungChange() < 0 then
+                if playerObj:getMoodles():getMoodleLevel(MoodleType.FoodEaten) >= 3 and playerObj:getNutrition():getCalories() >= 1000 then
+                    return
+                end
                 ISInventoryPaneContextMenu.onEatItems({ item }, 0.5, playerNumber);
                 if returnToContainer and (returnToContainer ~= playerInv) then
                     ISTimedActionQueue.add(ISInventoryTransferAction:new(playerObj, item, playerInv, returnToContainer))
