@@ -21,7 +21,7 @@ TODO
 ### Optional mods:
 [Mod Options](https://steamcommunity.com/sharedfiles/filedetails/?id=2169435993)
 
-- Download the [latest release](https://github.com/Bzouk/BzHotBar/releases/latest) from the repository releases section.
+- Download the [latest release](https://github.com/Bzouk/pz-bzoukhotbar/releases/) from the repository releases section.
 - Unpack the release with your preferred file archiver to game mod directory.
 - Start the game and toggle the mod in the Mod-Options screen.
 
