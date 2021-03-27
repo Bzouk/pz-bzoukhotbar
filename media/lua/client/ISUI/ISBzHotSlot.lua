@@ -39,7 +39,7 @@ function ISBzHotSlot:new (x, y, width, height, parent, object, slot, windowNum)
     o.object = object;
     o.parent = parent;
     o.slot = slot;
-    o.sizeOfRemoveButton = 10
+    o.sizeOfRemoveButton = math.max(10, getTextManager():MeasureStringY(UIFont.Small, getText("UI_Bz_Fast_HotBar_Slot_Remove")))
     o.windowNum = windowNum
 
     return o

@@ -26,7 +26,7 @@ function ISBzHotBarWindow:new(x, y, width, height, slotSize, windowNum, rows, co
     o.slotSize = slotSize
     o.items = {};
     o.slotPad = 2
-    o.margins = 3
+    o.margins = 1
     o.windowNum = windowNum
     o.rows = rows
     o.columns = columns
