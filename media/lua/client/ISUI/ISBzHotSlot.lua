@@ -171,10 +171,10 @@ function ISBzHotSlot:ActivateSlot()
     -- same like ISInventoryPane:doContextualDblClick(item)
     if instanceof(item, "Food") then -- food smoke (also food)
         if item:isPoison() == false then -- if not posion,
-            if playerObj:getMoodles():getMoodleLevel(MoodleType.FoodEaten) >= 3 and playerObj:getNutrition():getCalories() >= 1000 then
-                return
-            end
             if item:getHungChange() < 0 then
+                if playerObj:getMoodles():getMoodleLevel(MoodleType.FoodEaten) >= 3 and playerObj:getNutrition():getCalories() >= 1000 then
+                    return
+                end
                 ISInventoryPaneContextMenu.onEatItems({ item }, 0.5, playerNumber);
                 if returnToContainer and (returnToContainer ~= playerInv) then
                     ISTimedActionQueue.add(ISInventoryTransferAction:new(playerObj, item, playerInv, returnToContainer))
