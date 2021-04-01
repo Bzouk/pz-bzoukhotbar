@@ -5,4 +5,6 @@ IGUI_CS = {
     IGUI_Bz_Fast_HotBar_DropdownX_Tooltip = "Poèet øádku tabulky. 1 až 10.",
     IGUI_Bz_Fast_HotBar_DropdownY_Name = "Sloupce tabulky ",
     IGUI_Bz_Fast_HotBar_DropdownY_Tooltip = "Poèet sloupcù tabulky. 1 až 10.",
+    IGUI_Bz_Fast_HotBar_CheckBox_Move_Weapons_Name = "Swap u zbraní.",
+    IGUI_Bz_Fast_HotBar_CheckBox_Tooltip_Move_Weapons  = "Pøí kliknutí na zbraò se pøehodí aktuálnì držená vìc a pøesune se do kontaineru kde byla zbraò. Pokud je vìc v hotbaru z PZ a nebo pokud nemá kontainer místo tak se vìc nepøesunuje.",
 }

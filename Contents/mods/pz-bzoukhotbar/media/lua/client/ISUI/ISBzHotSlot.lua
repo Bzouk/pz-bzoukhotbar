@@ -238,10 +238,17 @@ function ISBzHotSlot:ActivateSlot()
             end
         end
     elseif instanceof(item, "HandWeapon") and item:getCondition() > 0 then
+        local itemsInHand = playerObj:getPrimaryHandItem()
+        local gameHotbar = getPlayerHotbar(playerNumber);
+        local fromHotbar = gameHotbar and gameHotbar:isItemAttached(itemsInHand);
+
         if item:isTwoHandWeapon() and not playerObj:isItemInBothHands(item) then
             ISInventoryPaneContextMenu.OnTwoHandsEquip({ item }, playerNumber)
+            if ISBzHotBar.config.main.transferWeapons and itemsInHand and not fromHotbar and returnToContainer and (returnToContainer ~= playerInv) then
+                ISTimedActionQueue.add(ISInventoryTransferAction:new(playerObj, itemsInHand, playerInv, returnToContainer))
+            end
         else
-            if (not playerObj:isPrimaryHandItem(item) or (playerObj:isPrimaryHandItem(item) and playerObj:isSecondaryHandItem(item))) and not getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):isDeepWounded() and (getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):getFractureTime() == 0 or getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):getSplintFactor() > 0) then
+            if (not playerObj:isPrimaryHandItem(item)) and not getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):isDeepWounded() and (getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):getFractureTime() == 0 or getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):getSplintFactor() > 0) then
                 -- forbid reequipping skinned items to avoid multiple problems for now
                 local add = true;
                 if playerObj:getSecondaryHandItem() == item and item:getScriptItem():getReplaceWhenUnequip() then
@@ -249,6 +256,9 @@ function ISBzHotSlot:ActivateSlot()
                 end
                 if add then
                     ISInventoryPaneContextMenu.OnPrimaryWeapon({ item }, playerNumber)
+                    if ISBzHotBar.config.main.transferWeapons and  itemsInHand and not fromHotbar and returnToContainer and (returnToContainer ~= playerInv) then
+                        ISTimedActionQueue.add(ISInventoryTransferAction:new(playerObj, itemsInHand, playerInv, returnToContainer))
+                    end
                 end
             end
         end

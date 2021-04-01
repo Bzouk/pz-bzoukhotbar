@@ -38,6 +38,7 @@ ISBzHotBar.config.windows[5].columns = 1;
 ISBzHotBar.config.main = {};
 ISBzHotBar.config.main.activeWindows = 1;
 ISBzHotBar.config.main.show = false;
+ISBzHotBar.config.main.transferWeapons = true;
 
 local ConfigFileName = "bzhotbar.ini"
 -----------------------------------------------------------------------------------------
@@ -57,6 +58,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
         ISBzHotBar.config.windows[4].columns =  val.settings.options.dropdown4y;
         ISBzHotBar.config.windows[5].rows =  val.settings.options.dropdown5X;
         ISBzHotBar.config.windows[5].columns =  val.settings.options.dropdown5y;
+        ISBzHotBar.config.main.transferWeapons = val.settings.options.moveweapons;
         ISBzHotBar.Reset()
     end
 
@@ -161,6 +163,12 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
             },
+            moveweapons = {
+                name = getText("IGUI_Bz_Fast_HotBar_CheckBox_Move_Weapons_Name"),
+                tooltip = "IGUI_Bz_Fast_HotBar_CheckBox_Tooltip_Move_Weapons",
+                default = true,
+                OnApplyInGame = OnApplyInGame,
+            },
         },
         mod_id = 'BzHotBar',
         mod_shortname = 'Fast Hotbar mod',
@@ -186,6 +194,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
     ISBzHotBar.config.windows[4].columns =  SETTINGS.options.dropdown4y;
     ISBzHotBar.config.windows[5].rows =  SETTINGS.options.dropdown5X;
     ISBzHotBar.config.windows[5].columns =  SETTINGS.options.dropdown5y;
+    ISBzHotBar.config.main.transferWeapons = SETTINGS.options.moveweapons;
 else
     local key_data = {
         key = Keyboard.KEY_TAB,
