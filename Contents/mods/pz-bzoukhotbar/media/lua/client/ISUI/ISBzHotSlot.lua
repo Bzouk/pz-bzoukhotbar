@@ -180,7 +180,10 @@ function ISBzHotSlot:ActivateSlot()
                     ISTimedActionQueue.add(ISInventoryTransferAction:new(playerObj, item, playerInv, returnToContainer))
                 end
             else
-                ISInventoryPaneContextMenu.onEatItems({ item }, 1, playerNumber);
+                local cmd = item:getCustomMenuOption() or getText("ContextMenu_Eat")
+                if cmd ~= getText("ContextMenu_Eat") then
+                    ISInventoryPaneContextMenu.onEatItems({ item }, 1, playerNumber);
+                end
             end
         end
     elseif instanceof(item, "DrainableComboItem") then
