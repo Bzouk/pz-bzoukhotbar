@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.6](https://github.com/Bzouk/pz-bzoukhotbar/tree/0.0.6) (2021-04-26)
+
+[Full Changelog](https://github.com/Bzouk/pz-bzoukhotbar/compare/0.0.3...0.0.6)
+
+## [0.0.3](https://github.com/Bzouk/pz-bzoukhotbar/tree/0.0.3) (2021-03-27)
+
+[Full Changelog](https://github.com/Bzouk/pz-bzoukhotbar/compare/0.0.2...0.0.3)
+
 ## [0.0.2](https://github.com/Bzouk/pz-bzoukhotbar/tree/0.0.2) (2021-03-27)
 
 [Full Changelog](https://github.com/Bzouk/pz-bzoukhotbar/compare/0.0.1...0.0.2)
