@@ -39,6 +39,15 @@ ISBzHotBar.config.main = {};
 ISBzHotBar.config.main.activeWindows = 1;
 ISBzHotBar.config.main.show = false;
 ISBzHotBar.config.main.transferWeapons = true;
+ISBzHotBar.config.main.slotsSize = 60; -- 78 93
+ISBzHotBar.config.main.slotsSizes = {};
+ISBzHotBar.config.main.slotsSizes[1] = 60;
+ISBzHotBar.config.main.slotsSizes[2] = 65;
+ISBzHotBar.config.main.slotsSizes[3] = 70;
+ISBzHotBar.config.main.slotsSizes[4] = 75;
+ISBzHotBar.config.main.slotsSizes[5] = 80;
+ISBzHotBar.config.main.slotsSizes[6] = 85;
+ISBzHotBar.config.main.slotsSizes[7] = 90;
 
 local ConfigFileName = "bzhotbar.ini"
 -----------------------------------------------------------------------------------------
@@ -59,6 +68,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
         ISBzHotBar.config.windows[5].rows =  val.settings.options.dropdown5X;
         ISBzHotBar.config.windows[5].columns =  val.settings.options.dropdown5y;
         ISBzHotBar.config.main.transferWeapons = val.settings.options.moveweapons;
+        ISBzHotBar.config.main.slotsSize = ISBzHotBar.config.main.slotsSizes[val.settings.options.dropdownslotsize];
         ISBzHotBar.Reset()
     end
 
@@ -169,6 +179,13 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 default = true,
                 OnApplyInGame = OnApplyInGame,
             },
+            dropdownslotsize = {
+                "60 default", "65", "70", "75", "80 1x fonts", "85", "90 2x fonts",
+                name = getText("IGUI_Bz_Fast_HotBar_SlotSize_Name"),
+                tooltip = "IGUI_Bz_Fast_HotBar_SlotSize_Tooltip",
+                default = 1,
+                OnApplyInGame = OnApplyInGame,
+            },
         },
         mod_id = 'BzHotBar',
         mod_shortname = 'Fast Hotbar mod',
@@ -195,6 +212,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
     ISBzHotBar.config.windows[5].rows =  SETTINGS.options.dropdown5X;
     ISBzHotBar.config.windows[5].columns =  SETTINGS.options.dropdown5y;
     ISBzHotBar.config.main.transferWeapons = SETTINGS.options.moveweapons;
+    ISBzHotBar.config.main.slotsSize =  ISBzHotBar.config.main.slotsSizes[SETTINGS.options.dropdownslotsize];
 else
     local key_data = {
         key = Keyboard.KEY_TAB,
@@ -247,7 +265,7 @@ end
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 ISBzHotBar.getHotBarSlotDimension = function()
-    return math.max(60, getTextManager():MeasureStringX(UIFont.Small, getText("UI_Bz_Fast_HotBar_Slot_Remove")) + 10)
+    return math.max(ISBzHotBar.config.main.slotsSize, getTextManager():MeasureStringX(UIFont.Small, getText("UI_Bz_Fast_HotBar_Slot_Remove")) + 10)
 end
 
 ISBzHotBar.getHotBarWidth = function(columns)

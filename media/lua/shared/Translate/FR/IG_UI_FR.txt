@@ -7,4 +7,6 @@ IGUI_FR = {
     IGUI_Bz_Fast_HotBar_DropdownY_Tooltip = "Nombre de colonnes a chaque fenetres. 1 a 10.",
     IGUI_Bz_Fast_HotBar_CheckBox_Move_Weapons_Name = "Échangez vos armes.",
     IGUI_Bz_Fast_HotBar_CheckBox_Tooltip_Move_Weapons  = "Lorsque vous cliquez sur une arme, l'objet actuellement détenu est retourné et déplacé vers le conteneur ou se trouvait l'arme. Si l'élément se trouve dans la barre active de PZ ou si le conteneur n'a pas d'espace, l'élément n'est pas déplacé.",
+    IGUI_Bz_Fast_HotBar_SlotSize_Name = "Taille de la fente",
+    IGUI_Bz_Fast_HotBar_SlotSize_Tooltip = "Définissez la taille des emplacements. Si la police est plus grande, la police est la taille sera utilisée.",
 }

@@ -7,4 +7,6 @@ IGUI_EN = {
     IGUI_Bz_Fast_HotBar_DropdownY_Tooltip = "Number of columns in table. 1 to 10.",
     IGUI_Bz_Fast_HotBar_CheckBox_Move_Weapons_Name = "Swap weapons.",
     IGUI_Bz_Fast_HotBar_CheckBox_Tooltip_Move_Weapons  = "When you click on a weapon, the currently held item is flipped and moved to the container where the weapon was. If the item is in the hot bar from PZ or if the container does not have a space, the item is not moved.",
+    IGUI_Bz_Fast_HotBar_SlotSize_Name = "Size of slot",
+    IGUI_Bz_Fast_HotBar_SlotSize_Tooltip = "Set size of slots. If font is bigger, then font is size will be used.",
 }

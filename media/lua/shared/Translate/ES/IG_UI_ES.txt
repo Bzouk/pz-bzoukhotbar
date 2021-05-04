@@ -7,4 +7,6 @@ IGUI_ES = {
     IGUI_Bz_Fast_HotBar_DropdownY_Tooltip = "Numeros de columnas en la ventana. 1 al 10.",
     IGUI_Bz_Fast_HotBar_CheckBox_Move_Weapons_Name = "Intercambiar armas.",
     IGUI_Bz_Fast_HotBar_CheckBox_Tooltip_Move_Weapons = "Cuando haces clic en un arma, el objeto que tienes actualmente se voltea y se mueve al contenedor donde estaba el arma. Si el artículo está en la barra de acceso rápido de PZ o si el contenedor no tiene un espacio, el artículo no se moverá."
+    IGUI_Bz_Fast_HotBar_SlotSize_Name = "Tamano de la ranura",
+    IGUI_Bz_Fast_HotBar_SlotSize_Tooltip = "Establecer el tamano de las ranuras. Si la fuente es más grande, se utilizará la fuente del tamano.",
 }
