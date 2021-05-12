@@ -289,12 +289,12 @@ function ISBzHotSlot:ActivateSlot()
             end
         elseif item:getCategory() == "Clothing" and not playerObj:isEquipped(item) then
             -- extra option items use mouse right click
-            if item:getClothingItemExtraOption() then
-                return
-            end
-            if item:getClothingExtraSubmenu() then
-                return
-            end
+            --if item:getClothingItemExtraOption() then
+            --     return
+           -- end
+            --if item:getClothingExtraSubmenu() then
+           --     return
+           -- end
             ISInventoryPaneContextMenu.onWearItems({ item }, playerNumber)
         elseif item:getCategory() == "Literature" and not item:canBeWrite() and not playerObj:getTraits():isIlliterate() then
             ISInventoryPaneContextMenu.onLiteratureItems({ item }, playerNumber)
