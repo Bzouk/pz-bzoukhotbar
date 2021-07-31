@@ -3,6 +3,5 @@ poster=poster.png
 description=Mod add hot bar slot for items to use.
 id=pz-bzoukhotbar
 url=https://github.com/Bzouk/pz-bzoukhotbar
-modversion=0.0.9
+modversion=0.0.10
 pzversion=41.50-IWBUMS
-require=bcUtils

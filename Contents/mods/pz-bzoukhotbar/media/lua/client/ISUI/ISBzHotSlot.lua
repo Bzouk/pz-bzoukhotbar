@@ -265,6 +265,22 @@ function ISBzHotSlot:ActivateSlot()
                 end
             end
         end
+    elseif instanceof(item, "Radio") and (instanceof(item, "InventoryItem") and not instanceof(item, "HandWeapon")) then
+        if  playerObj:isEquipped(item) then
+            ISTimedActionQueue.add(ISUnequipAction:new(playerObj, item, 50));
+            return
+        end
+
+        if (not playerObj:isPrimaryHandItem(item)) and not getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):isDeepWounded() and (getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):getFractureTime() == 0 or getSpecificPlayer(playerNumber):getBodyDamage():getBodyPart(BodyPartType.Hand_R):getSplintFactor() > 0) then
+            -- forbid reequipping skinned items to avoid multiple problems for now
+            local add = true;
+            if playerObj:getSecondaryHandItem() == item and item:getScriptItem():getReplaceWhenUnequip() then
+                add = false;
+            end
+            if add then
+                ISInventoryPaneContextMenu.OnPrimaryWeapon({ item }, playerNumber)
+            end
+        end
     else -- other items
         if item:isCanBandage() then
             -- we get all the damaged body part + not bandaged
