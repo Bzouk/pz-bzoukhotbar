@@ -1,0 +1,10 @@
+﻿IGUI_CS = {
+    IGUI_Bz_Fast_HotBar_MaxTables_Name = "格子数量",
+    IGUI_Bz_Fast_HotBar_MaxTables_Tooltip = "激活的格子数量1到5.",
+    IGUI_Bz_Fast_HotBar_DropdownX_Name = "快捷栏的行 ",
+    IGUI_Bz_Fast_HotBar_DropdownX_Tooltip = "快捷栏的行数1到10.",
+    IGUI_Bz_Fast_HotBar_DropdownY_Name = "快捷栏的列 ",
+    IGUI_Bz_Fast_HotBar_DropdownY_Tooltip = "快捷栏的列数1到10.",
+    IGUI_Bz_Fast_HotBar_CheckBox_Move_Weapons_Name = "交换武器.",
+    IGUI_Bz_Fast_HotBar_CheckBox_Tooltip_Move_Weapons = "当您点击物品时，您当前拥有的物品会翻转并移动到物品所在的容器。如果物品在原版物品栏中或者容器没有空间，则物品不会移动.",
+}
