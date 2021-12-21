@@ -69,7 +69,26 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
         ISBzHotBar.config.windows[5].columns =  val.settings.options.dropdown5y;
         ISBzHotBar.config.main.transferWeapons = val.settings.options.moveweapons;
         ISBzHotBar.config.main.slotsSize = ISBzHotBar.config.main.slotsSizes[val.settings.options.dropdownslotsize];
+        ISBzHotBar.saveConfig()
         ISBzHotBar.Reset()
+    end
+
+    local function OnApplyMainMenu(val)
+        --print("User pressed apply button. Changed value = ", self)
+        ISBzHotBar.config.main.activeWindows = val.settings.options.activeWindows;
+        ISBzHotBar.config.windows[1].rows =  val.settings.options.dropdown1X;
+        ISBzHotBar.config.windows[1].columns =  val.settings.options.dropdown1y;
+        ISBzHotBar.config.windows[2].rows =  val.settings.options.dropdown2X;
+        ISBzHotBar.config.windows[2].columns =  val.settings.options.dropdown2y;
+        ISBzHotBar.config.windows[3].rows =  val.settings.options.dropdown3X;
+        ISBzHotBar.config.windows[3].columns =  val.settings.options.dropdown3y;
+        ISBzHotBar.config.windows[4].rows =  val.settings.options.dropdown4X;
+        ISBzHotBar.config.windows[4].columns =  val.settings.options.dropdown4y;
+        ISBzHotBar.config.windows[5].rows =  val.settings.options.dropdown5X;
+        ISBzHotBar.config.windows[5].columns =  val.settings.options.dropdown5y;
+        ISBzHotBar.config.main.transferWeapons = val.settings.options.moveweapons;
+        ISBzHotBar.config.main.slotsSize = ISBzHotBar.config.main.slotsSizes[val.settings.options.dropdownslotsize];
+        ISBzHotBar.saveConfig()
     end
 
     local SETTINGS = {
@@ -82,6 +101,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_MaxTables_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown1X = {
                 -- Max 10
@@ -91,6 +111,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownX_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown1y = {
                 -- Max 10
@@ -100,6 +121,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownY_Tooltip",
                 default = 8,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown2X = {
                 -- Max 10
@@ -109,6 +131,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownX_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown2y = {
                 -- Max 10
@@ -118,6 +141,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownY_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown3X = {
                 -- Max 10
@@ -127,6 +151,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownX_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown3y = {
                 -- Max 10
@@ -136,6 +161,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownY_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown4X = {
                 -- Max 10
@@ -145,6 +171,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownX_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown4y = {
                 -- Max 10
@@ -154,6 +181,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownY_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown5X = {
                 -- Max 10
@@ -163,6 +191,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownX_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdown5y = {
                 -- Max 10
@@ -172,12 +201,14 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_DropdownY_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             moveweapons = {
                 name = getText("IGUI_Bz_Fast_HotBar_CheckBox_Move_Weapons_Name"),
                 tooltip = "IGUI_Bz_Fast_HotBar_CheckBox_Tooltip_Move_Weapons",
                 default = true,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
             dropdownslotsize = {
                 "60 default", "65", "70", "75", "80 1x fonts", "85", "90 2x fonts",
@@ -185,6 +216,7 @@ if ModOptions and ModOptions.getInstance and ModOptions:isHost() then
                 tooltip = "IGUI_Bz_Fast_HotBar_SlotSize_Tooltip",
                 default = 1,
                 OnApplyInGame = OnApplyInGame,
+                OnApplyMainMenu = OnApplyMainMenu,
             },
         },
         mod_id = 'BzHotBar',
@@ -230,6 +262,10 @@ ISBzHotBar.loadConfig = function() -- {{{
     if not bcUtils.tableIsEmpty(ini) then
         if not ini.main then ini.main = {} end
 
+        ISBzHotBar.config.main.activeWindows = tonumber(ini.main.activeWindows)
+        ISBzHotBar.config.main.transferWeapons = tonumber(ini.main.transferWeapons)
+        ISBzHotBar.config.main.slotsSize = tonumber(ini.main.slotsSize)
+
         for i=1,ISBzHotBar.config.main.activeWindows do
             if not ini.items then ini.items = {} end
             if not ini.items[tostring(i)] then ini.items[tostring(i)] = {} end
@@ -240,6 +276,9 @@ ISBzHotBar.loadConfig = function() -- {{{
             -- load last x y fow windows
             if not ini.windows then ini.windows = {} end
             if not ini.windows[tostring(i)] then ini.windows[tostring(i)] = {} end
+
+            ISBzHotBar.config.windows[i].rows = tonumber(ini.windows[tostring(i)].rows)
+            ISBzHotBar.config.windows[i].columns = tonumber(ini.windows[tostring(i)].columns)
 
             if ini.windows[tostring(i)].x and ini.windows[tostring(i)].y then
                 ISBzHotBar.config.windows[i].x =  tonumber(ini.windows[tostring(i)].x)
@@ -364,3 +403,5 @@ end
 Events.OnKeyPressed.Add(ISBzHotBar.onKeyPressed);
 Events.OnResolutionChange.Add(ISBzHotBar.OnResolutionChange)
 Events.OnSave.Add(ISBzHotBar.OnSave)
+
+Events.OnGameStart.Add(ISBzHotBar.loadConfig())
