@@ -39,14 +39,14 @@ function ISBzHotSlot:new (x, y, width, height, parent, object, slot, windowNum)
     o.object = object;
     o.parent = parent;
     o.slot = slot;
-    o.sizeOfRemoveButton = math.max(10, getTextManager():MeasureStringY(UIFont.Small, getText("UI_Bz_Fast_HotBar_Slot_Remove")))
+    o.sizeOfRemoveButton = math.max(10, getTextManager():MeasureStringY(UIFont.Small, ISBzHotBar.getHotBarDeleteText()))
     o.windowNum = windowNum
 
     return o
 end
 
 function ISBzHotSlot:createChildren()
-    self.removeButton = ISButton:new(0, self:getHeight() - self.sizeOfRemoveButton, self:getWidth(), self.sizeOfRemoveButton, getText("UI_Bz_Fast_HotBar_Slot_Remove"))
+    self.removeButton = ISButton:new(0, self:getHeight() - self.sizeOfRemoveButton, self:getWidth(), self.sizeOfRemoveButton, ISBzHotBar.getHotBarDeleteText())
     self.removeButton:setOnClick(ISBzHotBar.ClearSlotButton, self.slot, self.windowNum)
     self:addChild(self.removeButton);
     self.removeButton:setVisible(false);
@@ -56,6 +56,17 @@ function ISBzHotSlot:render()
     if self.object.item == nil then
         self.removeButton:setVisible(false);
         return ;
+    end
+    local player = getPlayer()
+    if player == nil then
+        return
+    end ;
+    local playerInv = player:getInventory()
+    if playerInv == nil then
+        return
+    end ;
+    if playerInv:isDrawDirty() then
+        self:updateAllItems()
     end
 
     self.removeButton:setVisible(true);
@@ -82,7 +93,10 @@ end
 
 function ISBzHotSlot:update()
     --ISPanel.update(self)
-    if self.object.item ~= nil then
+end
+
+function ISBzHotSlot:updateAllItems()
+    if  self.object ~= nil and self.object.item ~= nil then
         local player = getPlayer()
         if player == nil then
             return
