@@ -39,23 +39,37 @@ function ISBzHotSlot:new (x, y, width, height, parent, object, slot, windowNum)
     o.object = object;
     o.parent = parent;
     o.slot = slot;
-    o.sizeOfRemoveButton = math.max(10, getTextManager():MeasureStringY(UIFont.Small, getText("UI_Bz_Fast_HotBar_Slot_Remove")))
+    o.sizeOfRemoveButton = math.max(10, getTextManager():MeasureStringY(UIFont.Small, ISBzHotBar.getHotBarDeleteText()))
     o.windowNum = windowNum
+    -- o.frozenItemIcon = getTexture("media/ui/icon_frozen.png");
+    -- o.poisonIcon = getTexture("media/ui/SkullPoison.png");
 
     return o
 end
 
 function ISBzHotSlot:createChildren()
-    self.removeButton = ISButton:new(0, self:getHeight() - self.sizeOfRemoveButton, self:getWidth(), self.sizeOfRemoveButton, getText("UI_Bz_Fast_HotBar_Slot_Remove"))
+    self.removeButton = ISButton:new(0, self:getHeight() - self.sizeOfRemoveButton, self:getWidth(), self.sizeOfRemoveButton, ISBzHotBar.getHotBarDeleteText())
     self.removeButton:setOnClick(ISBzHotBar.ClearSlotButton, self.slot, self.windowNum)
     self:addChild(self.removeButton);
     self.removeButton:setVisible(false);
 end
 
-function ISBzHotSlot:render()
+function ISBzHotSlot:prerender()
+    ISPanel.prerender(self)
     if self.object.item == nil then
         self.removeButton:setVisible(false);
         return ;
+    end
+    local player = getPlayer()
+    if player == nil then
+        return
+    end ;
+    local playerInv = player:getInventory()
+    if playerInv == nil then
+        return
+    end ;
+    if playerInv:isDrawDirty() then
+        self:updateAllItems()
     end
 
     self.removeButton:setVisible(true);
@@ -74,6 +88,17 @@ function ISBzHotSlot:render()
         return ;
     end
 
+--[[    local playerInv = player:getInventory()
+    local item = playerInv:getFirstTypeEvalRecurse(self.object.item, predicateNotBroken)
+    if instanceof(item, "Food") then -- food smoke (also food)
+        if item:isPoison() == true then
+            self:drawTexture(self.poisonIcon,1, 1, 1, 1, 1, 1);
+        elseif item:isFrozen() == true then
+            self:drawTexture(self.frozenItemIcon, (1), 1, 1, 1, 1, 1);
+        end
+    end
+    ]]
+
     local text = "(" .. self.object.count .. ")";
     -- ( text, x,double y,double r,double g, double b,double alpha)
     self:drawText(text, self.width - getTextManager():MeasureStringX(UIFont.Small, text), self.removeButton.y - (getTextManager():MeasureStringY(UIFont.Small, text) + 1), 1, 1, 1, 1, UIFont.Small);
@@ -82,7 +107,10 @@ end
 
 function ISBzHotSlot:update()
     --ISPanel.update(self)
-    if self.object.item ~= nil then
+end
+
+function ISBzHotSlot:updateAllItems()
+    if  self.object ~= nil and self.object.item ~= nil then
         local player = getPlayer()
         if player == nil then
             return
@@ -170,7 +198,7 @@ function ISBzHotSlot:ActivateSlot()
     -- https://projectzomboid.com/modding/zombie/inventory/InventoryItem.html
     -- same like ISInventoryPane:doContextualDblClick(item)
     if instanceof(item, "Food") then -- food smoke (also food)
-        if item:isPoison() == false then -- if not posion,
+        if item:isPoison() == false and item:isFrozen() == false then -- if not posion, and not frozen
             if item:getHungChange() < 0 then
                 if playerObj:getMoodles():getMoodleLevel(MoodleType.FoodEaten) >= 3 and playerObj:getNutrition():getCalories() >= 1000 then
                     return

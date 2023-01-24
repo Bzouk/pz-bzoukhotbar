@@ -49,7 +49,9 @@ function ISBzHotBarWindow:createChildren()
     local i = 0
     for y=0,self.rows-1 do
         for x=0, self.columns-1 do
-            self.slots[i] = self:addChild(ISBzHotSlot:new(offx * x + self.slotPad, tbw + y * self.slotSize, offx - self.margins, self.slotSize - self.margins , self, self.items[i], i, self.windowNum) );
+            local slot = ISBzHotSlot:new(offx * x + self.slotPad, tbw + y * self.slotSize, offx - self.margins, self.slotSize - self.margins , self, self.items[i], i, self.windowNum)
+            self:addChild(slot);
+            self.slots[i] = slot
             i = i + 1;
         end
     end
@@ -67,6 +69,15 @@ function ISBzHotBarWindow:updateItem(item, slot)
         local p = InventoryItemFactory.CreateItem(item);
         if p ~= nil then
             self.items[slot].texture = p:getTexture();
+        end
+    end
+end
+
+function ISBzHotBarWindow:updateAllItems()
+    for i=0, ( self.rows * self.columns)-1 do
+        local slot = self.slots[i]
+        if slot ~= nil then
+            slot:updateAllItems()
         end
     end
 end

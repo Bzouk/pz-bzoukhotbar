@@ -1,7 +1,5 @@
 # ZomboidMod
 
-![Game Version](https://img.shields.io/badge/PZ%20Version-IWBUMS%3A%2041.50-red) [![License](https://img.shields.io/github/license/yooksi/pz-zmod)](https://mit-license.org/)
-
 Hot bar mod adds quick access bar for items from player inventory.
 
 
