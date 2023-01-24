@@ -201,7 +201,7 @@ end
 -----------------------------------------------------------------------
 -------------------------Events func-----------------------------------
 ISBzHotBar.onKeyPressed = function(key)
-    if key == getCore():getKey("Bz_Toggle_Hotbar") and getSpecificPlayer(0) and getGameSpeed() > 0 then
+    if key == getCore():getKey("Bz_Toggle_Hotbar") and getPlayer() and getGameSpeed() > 0 then
         ISBzHotBar.loadConfig()
         ISBzHotBar.Toggle()
     end

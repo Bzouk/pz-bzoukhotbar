@@ -182,7 +182,7 @@ function ISBzHotSlot:ActivateSlot()
         return
     end
 
-    local playerNumber = getPlayer():getPlayerNum()
+    local playerNumber = playerObj:getPlayerNum()
     -- search in inventory + backpack and container in inventory
    -- local item = playerObj:getInventory():getFirstTypeRecurse(self.object.item);
     local playerInv = playerObj:getInventory()

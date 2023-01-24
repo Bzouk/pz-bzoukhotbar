@@ -60,7 +60,7 @@ end
 function ISBzHotBarWindow:updateItem(item, slot)
     self.items[slot].item = item;
     if item ~= nil then
-        local player = getSpecificPlayer(0)
+        local player = getPlayer()
         if player == nil then return end;
         local playerInv = player:getInventory()
         if playerInv == nil then return end;
