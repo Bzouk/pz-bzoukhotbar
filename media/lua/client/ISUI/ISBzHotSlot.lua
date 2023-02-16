@@ -41,9 +41,8 @@ function ISBzHotSlot:new (x, y, width, height, parent, object, slot, windowNum)
     o.slot = slot;
     o.sizeOfRemoveButton = math.max(10, getTextManager():MeasureStringY(UIFont.Small, ISBzHotBar.getHotBarDeleteText()))
     o.windowNum = windowNum
-    -- o.frozenItemIcon = getTexture("media/ui/icon_frozen.png");
-    -- o.poisonIcon = getTexture("media/ui/SkullPoison.png");
-
+    o.frozenItemIcon = getTexture("media/ui/icon_frozen.png");
+    o.poisonIcon = getTexture("media/ui/SkullPoison.png");
     return o
 end
 
@@ -74,36 +73,36 @@ function ISBzHotSlot:prerender()
 
     self.removeButton:setVisible(true);
 
-    local imgSize = math.min(self.width, self.height - self.sizeOfRemoveButton);
+    local iconBoxSize =  self.height - self.sizeOfRemoveButton
+    local imgSize = math.min(self.width, iconBoxSize);
     local alpha = 0.3;
 
     if self.object.count > 0 then
-        alpha = 0.7;
+        alpha = 0.9;
+    end
+
+    if self.object.isPoison then
+        self:drawTexture(self.poisonIcon,0, 0, 1, 1, 1, 1);
+    elseif self.object.isFrozen then
+        self:drawTexture(self.frozenItemIcon, 0, 0, 1, 1, 1, 1);
+    end
+    if self.object.condition > 0 then
+        local sizeOfStatusRect = iconBoxSize * self.object.condition
+        self:drawRect(0, iconBoxSize - sizeOfStatusRect, self.width, sizeOfStatusRect, self.object.color.a, self.object.color.r, self.object.color.g , self.object.color.b) -- self.height - self.sizeOfRemoveButton-(imgSize*condition)
     end
 
     if self.object.texture ~= nil then
+        -- self:drawTextureScaled(self.texture, 0, 0, self.scaledWidth, self.scaledHeight,  self.backgroundColor.a, self.backgroundColor.r, self.backgroundColor.g, self.backgroundColor.b);
         self:drawTextureScaled(self.object.texture, (self.width - imgSize) / 2, 0, imgSize, imgSize, alpha, 1, 1, 1);
     else
         self.removeButton:setVisible(false);
         return ;
     end
 
---[[    local playerInv = player:getInventory()
-    local item = playerInv:getFirstTypeEvalRecurse(self.object.item, predicateNotBroken)
-    if instanceof(item, "Food") then -- food smoke (also food)
-        if item:isPoison() == true then
-            self:drawTexture(self.poisonIcon,1, 1, 1, 1, 1, 1);
-        elseif item:isFrozen() == true then
-            self:drawTexture(self.frozenItemIcon, (1), 1, 1, 1, 1, 1);
-        end
-    end
-    ]]
-
     local text = "(" .. self.object.count .. ")";
     -- ( text, x,double y,double r,double g, double b,double alpha)
     self:drawText(text, self.width - getTextManager():MeasureStringX(UIFont.Small, text), self.removeButton.y - (getTextManager():MeasureStringY(UIFont.Small, text) + 1), 1, 1, 1, 1, UIFont.Small);
 end
-
 
 function ISBzHotSlot:update()
     --ISPanel.update(self)
@@ -121,6 +120,42 @@ function ISBzHotSlot:updateAllItems()
         end ;
         --self.object.count = playerInv:getItemCountRecurse(self.object.item)
         self.object.count = playerInv:getCountTypeEvalRecurse(self.object.item, predicateNotBroken)
+        self.object.isPoison = false
+        self.object.isFrozen = false
+        self.object.condition = 0
+        local item = playerInv:getFirstTypeEvalRecurse(self.object.item, predicateNotBroken)
+        if instanceof(item, "HandWeapon") then
+            self.object.condition = item:getCondition() / item:getConditionMax();
+        elseif instanceof(item, "DrainableComboItem") then
+            self.object.condition = item:getUsedDelta()
+        end
+        if self.object.condition > 0 then
+            if self.object.condition >=  0.8 and self.object.condition <= 1.0 then
+                self.object.color = {r=0.000,g=0.502,b=0,a=0.5} -- Green
+            elseif self.object.condition >=  0.6 and self.object.condition <= 0.8 then
+                self.object.color = {r=0.678,g=1,b=0.184,a=0.5} -- GreenYellow
+            elseif self.object.condition >= 0.4 and self.object.condition <= 0.6 then
+                self.object.color = {r=1.000,g=0.843,b=0,a=0.5} -- Gold
+            elseif self.object.condition >= 0.2 and self.object.condition <= 0.4 then
+                self.object.color = {r=1.000,g=0.271,b=0,a=0.5} -- OrangeRed
+            elseif self.object.condition >= 0.0 and self.object.condition <= 0.2  then
+                self.object.color = {r=1,g=0,b=0,a=0.5} -- red
+            end
+            return
+        end
+
+        if instanceof(item, "Food") then -- food smoke (also food)
+            self.object.isPoison = item:isPoison()
+            self.object.isFrozen = item:isFrozen()
+            local hunger = item:getHungerChange();
+            if item:getFreezingTime() > 0 then
+                self.object.condition = item:getFreezingTime() / 100
+                self.object.color =  {r=0.0,g=0.1,b=0.8,a=0.5}
+            elseif (hunger ~= 0) then
+                self.object.condition = (-hunger) / 1.0
+                self.object.color =  {r=0.678,g=1.0,b=0.384,a=0.5}
+            end
+        end
     end
 end
 

@@ -13,6 +13,9 @@ require "ISUI/ISLayoutManager"
 require "ISUI/ISCollapsableWindow"
 require "TimedActions/ISInventoryTransferAction"
 
+local function predicateNotBroken(item)
+    return not item:isBroken()
+end
 -- --------------------------
 ISBzHotBarWindow = ISBzHotBarWindow or ISCollapsableWindow:derive("ISBzHotBarWindow");
 function ISBzHotBarWindow:new(x, y, width, height, slotSize, windowNum, rows, columns)
@@ -20,8 +23,8 @@ function ISBzHotBarWindow:new(x, y, width, height, slotSize, windowNum, rows, co
     o = ISCollapsableWindow:new(x, y, width, height); -- like inventory window
     setmetatable(o, self)
     self.__index = self
-    o.backgroundColor = {r=0, g=0, b=0, a=1};
-    o.borderColor = {r=0, g=0, b=0, a=0.5};
+    o.backgroundColor = { r = 0, g = 0, b = 0, a = 1 };
+    o.borderColor = { r = 0, g = 0, b = 0, a = 0.5 };
     o:setResizable(false);
     o.slotSize = slotSize
     o.items = {};
@@ -31,9 +34,9 @@ function ISBzHotBarWindow:new(x, y, width, height, slotSize, windowNum, rows, co
     o.rows = rows
     o.columns = columns
 
-    for i=0, (o.rows * o.columns)-1 do
+    for i = 0, (o.rows * o.columns) - 1 do
         o.items[i] = {};
-        o:updateItem(ISBzHotBar.config.items[windowNum][i],i)
+        o:updateItem(ISBzHotBar.config.items[windowNum][i], i)
     end
 
     o:setTitle(tostring(windowNum))
@@ -47,9 +50,9 @@ function ISBzHotBarWindow:createChildren()
     local offx = self.slotSize;
     self.slots = {};
     local i = 0
-    for y=0,self.rows-1 do
-        for x=0, self.columns-1 do
-            local slot = ISBzHotSlot:new(offx * x + self.slotPad, tbw + y * self.slotSize, offx - self.margins, self.slotSize - self.margins , self, self.items[i], i, self.windowNum)
+    for y = 0, self.rows - 1 do
+        for x = 0, self.columns - 1 do
+            local slot = ISBzHotSlot:new(offx * x + self.slotPad, tbw + y * self.slotSize, offx - self.margins, self.slotSize - self.margins, self, self.items[i], i, self.windowNum)
             self:addChild(slot);
             self.slots[i] = slot
             i = i + 1;
@@ -61,20 +64,62 @@ function ISBzHotBarWindow:updateItem(item, slot)
     self.items[slot].item = item;
     if item ~= nil then
         local player = getPlayer()
-        if player == nil then return end;
+        if player == nil then
+            return
+        end ;
         local playerInv = player:getInventory()
-        if playerInv == nil then return end;
+        if playerInv == nil then
+            return
+        end ;
 
         self.items[slot].count = playerInv:getItemCountRecurse(item)
         local p = InventoryItemFactory.CreateItem(item);
         if p ~= nil then
             self.items[slot].texture = p:getTexture();
         end
+        self.items[slot].isPoison = false
+        self.items[slot].isFrozen = false
+        self.items[slot].condition = 0
+        self.items[slot].color = { r = 0.000, g = 0.502, b = 0, a = 0.4 }
+        local itemFromInv = playerInv:getFirstTypeEvalRecurse(self.items[slot].item, predicateNotBroken)
+        if instanceof(itemFromInv, "HandWeapon") then
+            self.items[slot].condition = itemFromInv:getCondition() / itemFromInv:getConditionMax();
+        elseif instanceof(itemFromInv, "DrainableComboItem") then
+            self.items[slot].condition = itemFromInv:getUsedDelta()
+        end
+        if self.items[slot].condition > 0 then
+            if self.items[slot].condition >= 0.8 and self.items[slot].condition <= 1.0 then
+                self.items[slot].color = { r = 0.000, g = 0.502, b = 0, a = 0.4 } -- Green
+            elseif self.items[slot].condition >= 0.6 and self.items[slot].condition <= 0.8 then
+                self.items[slot].color = { r = 0.678, g = 1, b = 0.184, a = 0.4 } -- GreenYellow
+            elseif self.items[slot].condition >= 0.4 and self.items[slot].condition <= 0.6 then
+                self.items[slot].color = { r = 1.000, g = 0.843, b = 0, a = 0.4 } -- Gold
+            elseif self.items[slot].condition >= 0.2 and self.items[slot].condition <= 0.4 then
+                self.items[slot].color = { r = 1.000, g = 0.271, b = 0, a = 0.4 } -- OrangeRed
+            elseif self.items[slot].condition >= 0.0 and self.items[slot].condition <= 0.2 then
+                self.items[slot].color = { r = 1, g = 0, b = 0, a = 0.4 } -- red
+            end
+            return
+        end
+
+        if instanceof(itemFromInv, "Food") then
+            -- food smoke (also food)
+            self.items[slot].isPoison = itemFromInv:isPoison()
+            self.items[slot].isFrozen = itemFromInv:isFrozen()
+            local hunger = itemFromInv:getHungerChange();
+            if itemFromInv:getMeltingTime() > 0 then
+                self.items[slot].condition = math.abs(itemFromInv:getMeltingTime() / 100)
+                self.items[slot].color = { r = 0.0, g = 0, b = 0.5, a = 0.4 }
+            elseif (hunger ~= 0) then
+                self.items[slot].condition = (-hunger) / 1.0
+                self.items[slot].color = { r = 0.678, g = 1, b = 0.384, a = 0.4 }
+            end
+        end
     end
 end
 
 function ISBzHotBarWindow:updateAllItems()
-    for i=0, ( self.rows * self.columns)-1 do
+    for i = 0, (self.rows * self.columns) - 1 do
         local slot = self.slots[i]
         if slot ~= nil then
             slot:updateAllItems()
