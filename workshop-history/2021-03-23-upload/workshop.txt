@@ -1,0 +1,7 @@
+version=1
+id=
+title=Mod Template
+description=This mod add hot bars for items to quick use.
+description=
+tags=
+visibility=public

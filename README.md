@@ -1,3 +1,16 @@
+> **Archived.** This is the original Lua version of the hot bar mod (2021–2023),
+> built on Gradle. It is kept for history only and gets no further development.
+>
+> Its successor is written in TypeScript with PipeWrench/PZPW:
+> **pzhotbar** — Build 41 as `BzoukPzHotBarNew`, Build 42 as `BZQuickSlots`.
+>
+> Workshop items: [Lua original](https://steamcommunity.com/sharedfiles/filedetails/?id=2434425002) ·
+> [B41 rewrite](https://steamcommunity.com/sharedfiles/filedetails/?id=3133189049) ·
+> [B42 / BZQuickSlots](https://steamcommunity.com/sharedfiles/filedetails/?id=3396010813)
+>
+> `workshop-history/` holds the Steam description as it changed between 2021-03 and 2022-03,
+> recovered from dated backup folders.
+
 # ZomboidMod
 
 Hot bar mod adds quick access bar for items from player inventory.

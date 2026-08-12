@@ -1,0 +1,6 @@
+version=1
+id=2434425002
+title=BzoukHotbarMod
+description=This mod add hot bars for items to quick use.
+tags=
+visibility=private
