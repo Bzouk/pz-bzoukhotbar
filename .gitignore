@@ -83,3 +83,9 @@ $RECYCLE.BIN/
 *.i*86
 *.x86_64
 *.hex
+
+# Eclipse output copy
+/bin/
+
+# IntelliJ
+/.idea/

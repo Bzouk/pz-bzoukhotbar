@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="bin/media" path="media/profanity">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/radio">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/shaders">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/lightmaps">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/AnimSets">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/gibs">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/items">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/sound">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/actiongroups">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/ui">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/hairStyles">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/inventory">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/maps">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/animstates">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/models_X">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/geomTextures">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/animsold">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/fonts">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/music">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/font">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/heightmaps">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/textures">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/scripts">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/models">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/anims_X">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/texturepacks">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/animscript">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/clothing">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/anims">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/media" path="media/lua">
+		<attributes>
+			<attribute name="gradle_scope" value="media"/>
+			<attribute name="gradle_used_by_scope" value="media"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17/"/>
+	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="output" path="bin/default"/>
+</classpath>

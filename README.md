@@ -1,7 +1,7 @@
 # ZomboidMod
 
 Hot bar mod adds quick access bar for items from player inventory.
-
+Based on - https://github.com/cocolabs/pz-zmod
 
 ## Motivation and credits
 

@@ -4,5 +4,4 @@ description=Mod add hot bar slot for items to use.
 id=pz-bzoukhotbar
 url=https://github.com/Bzouk/pz-bzoukhotbar
 modversion=0.1.3
-pzversion=41.78
-require=bcUtils
+pzversion=3.1.0

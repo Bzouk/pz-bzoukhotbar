@@ -443,6 +443,7 @@ if ModOptions and ModOptions.getInstance then
     ModOptions:getInstance(SETTINGS)
     ModOptions:loadFile()
     ISBzHotBar.loadConfig();
+
     ISBzHotBar.config.main.activeWindows = SETTINGS.options.activeWindows;
     ISBzHotBar.config.windows[1].rows = SETTINGS.options.dropdown1X;
     ISBzHotBar.config.windows[1].columns = SETTINGS.options.dropdown1y;
